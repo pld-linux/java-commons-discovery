@@ -1,4 +1,4 @@
-%define short_name commons-discovery
+%define	short_name	commons-discovery
 Summary:	Jakarta Commons Discovery
 Name:		jakarta-commons-discovery
 Version:	0.3
