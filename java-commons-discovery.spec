@@ -6,7 +6,7 @@ Version:	0.2
 Release:	0.1
 License:	Apache Software License
 Group:		Development/Languages/Java
-Source0:	http://www.apache.org/dist/jakarta/commons/discovery/source/commons-discovery-%{version}src.tar.gz
+Source0:	http://www.apache.org/dist/jakarta/commons/discovery/source/commons-discovery-%{version}-src.tar.gz
 # Source0-md5:	57968a150ea9b7158ac0e995c8f24080
 URL:		http://jakarta.apache.org/commons/discovery/
 BuildRequires:	ant
