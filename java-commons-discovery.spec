@@ -2,12 +2,12 @@
 Summary:	Jakarta Commons Discovery - discovering implementations for pluggable interfaces
 Summary(pl):	Pakiet Jakarta Commons Discovery - wykrywanie implementacji do³±czalnych interfejsów
 Name:		jakarta-commons-discovery
-Version:	0.3
+Version:	0.2
 Release:	0.1
 License:	Apache Software License
 Group:		Development/Languages/Java
-Source0:	http://www.apache.org/dist/jakarta/commons/discovery/source/commonsdiscovery%{version}src.tar.gz
-# Source0-md5:	233726c301278b7ca8baa50eb7b0f582
+Source0:	http://www.apache.org/dist/jakarta/commons/discovery/source/commons-discovery-%{version}src.tar.gz
+# Source0-md5:	57968a150ea9b7158ac0e995c8f24080
 URL:		http://jakarta.apache.org/commons/discovery/
 BuildRequires:	jakarta-ant
 BuildRequires:	jakarta-commons-logging >= 1.0.1
