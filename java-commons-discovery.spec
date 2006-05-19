@@ -9,7 +9,7 @@ Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/jakarta/commons/discovery/source/commons-discovery-%{version}src.tar.gz
 # Source0-md5:	57968a150ea9b7158ac0e995c8f24080
 URL:		http://jakarta.apache.org/commons/discovery/
-BuildRequires:	jakarta-ant
+BuildRequires:	ant
 BuildRequires:	jakarta-commons-logging >= 1.0.1
 BuildRequires:	junit >= 3.7
 Requires:	jakarta-commons-logging >= 1.0.1
