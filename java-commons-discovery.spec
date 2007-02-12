@@ -1,6 +1,6 @@
 %define	short_name	commons-discovery
 Summary:	Jakarta Commons Discovery - discovering implementations for pluggable interfaces
-Summary(pl):	Pakiet Jakarta Commons Discovery - wykrywanie implementacji do³±czalnych interfejsów
+Summary(pl.UTF-8):   Pakiet Jakarta Commons Discovery - wykrywanie implementacji doÅ‚Ä…czalnych interfejsÃ³w
 Name:		jakarta-commons-discovery
 Version:	0.2
 Release:	0.1
@@ -24,23 +24,23 @@ be, available to provide the service described by the interface.
 Discovery provides facilities for finding and instantiating classes,
 and for lifecycle management of singleton (factory) classes.
 
-%description -l pl
-Komponent Discovery s³u¿y do wykrywania lub znajdowania implementacji
-do³±czalnych interfejsów. Do³±czalne interfejsy s± okre¶lane wtedy,
-gdy jest (lub bêdzie) dostêpnych wiele implementacji dostarczaj±cych
-us³ugê opisan± przez interfejs. Discovery udostêpnia u³atwienia do
-znajdowania i dziedziczenia klas oraz zarz±dzania cyklem ¿ycia klas
+%description -l pl.UTF-8
+Komponent Discovery sÅ‚uÅ¼y do wykrywania lub znajdowania implementacji
+doÅ‚Ä…czalnych interfejsÃ³w. DoÅ‚Ä…czalne interfejsy sÄ… okreÅ›lane wtedy,
+gdy jest (lub bÄ™dzie) dostÄ™pnych wiele implementacji dostarczajÄ…cych
+usÅ‚ugÄ™ opisanÄ… przez interfejs. Discovery udostÄ™pnia uÅ‚atwienia do
+znajdowania i dziedziczenia klas oraz zarzÄ…dzania cyklem Å¼ycia klas
 singleton (factory).
 
 %package javadoc
 Summary:	Javadoc for %{name}
-Summary(pl):	Dokumentacja javadoc dla pakietu %{name}
+Summary(pl.UTF-8):   Dokumentacja javadoc dla pakietu %{name}
 Group:		Documentation
 
 %description javadoc
 Javadoc for %{name}.
 
-%description javadoc -l pl
+%description javadoc -l pl.UTF-8
 Dokumentacja javadoc dla pakietu %{name}.
 
 %prep
