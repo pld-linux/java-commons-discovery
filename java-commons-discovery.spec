@@ -1,6 +1,6 @@
 %define	short_name	commons-discovery
 Summary:	Jakarta Commons Discovery - discovering implementations for pluggable interfaces
-Summary(pl.UTF-8):   Pakiet Jakarta Commons Discovery - wykrywanie implementacji dołączalnych interfejsów
+Summary(pl.UTF-8):	Pakiet Jakarta Commons Discovery - wykrywanie implementacji dołączalnych interfejsów
 Name:		jakarta-commons-discovery
 Version:	0.2
 Release:	0.1
@@ -34,7 +34,7 @@ singleton (factory).
 
 %package javadoc
 Summary:	Javadoc for %{name}
-Summary(pl.UTF-8):   Dokumentacja javadoc dla pakietu %{name}
+Summary(pl.UTF-8):	Dokumentacja javadoc dla pakietu %{name}
 Group:		Documentation
 
 %description javadoc
