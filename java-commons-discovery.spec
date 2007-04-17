@@ -1,4 +1,5 @@
-%define	short_name	commons-discovery
+%bcond_with	javadoc	# broken
+%include	/usr/lib/rpm/macros.java
 Summary:	Jakarta Commons Discovery - discovering implementations for pluggable interfaces
 Summary(pl.UTF-8):	Pakiet Jakarta Commons Discovery - wykrywanie implementacji dołączalnych interfejsów
 Name:		jakarta-commons-discovery
@@ -8,10 +9,14 @@ License:	Apache Software License
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/jakarta/commons/discovery/source/commons-discovery-%{version}-src.tar.gz
 # Source0-md5:	57968a150ea9b7158ac0e995c8f24080
+Patch0:		%{name}-source.patch
 URL:		http://jakarta.apache.org/commons/discovery/
 BuildRequires:	ant
 BuildRequires:	jakarta-commons-logging >= 1.0.1
+BuildRequires:	jpackage-utils
 BuildRequires:	junit >= 3.7
+BuildRequires:	rpm-javaprov
+BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jakarta-commons-logging >= 1.0.1
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -36,6 +41,7 @@ singleton (factory).
 Summary:	Javadoc for %{name}
 Summary(pl.UTF-8):	Dokumentacja javadoc dla pakietu %{name}
 Group:		Documentation
+Requires:	jpackage-utils
 
 %description javadoc
 Javadoc for %{name}.
@@ -44,43 +50,50 @@ Javadoc for %{name}.
 Dokumentacja javadoc dla pakietu %{name}.
 
 %prep
-%setup -q -n commons-discovery-%{version}
-chmod u+w .
+%setup -q -n commons-discovery-%{version}-src
+chmod -R u+w .
+%patch0 -p1
 
-# No NOTICE.txt file in the sources
-touch NOTICE.txt
+cp discovery/LICENSE.txt LICENSE
 
 %build
-ant \
-	-Djunit.jar=/usr/share/java/junit.jar \
-	-Dlogger.jar=/usr/share/java/commons-logging.jar \
-	test.discovery dist
+cd discovery
+%ant \
+	-Dcompile.source=1.4 \
+	-Djunit.jar=%{_datadir}/java/junit.jar \
+	-Dlogger.jar=%{_datadir}/java/commons-logging.jar \
+	dist
 
 %install
 rm -rf $RPM_BUILD_ROOT
+cd discovery
 
 # jar
 install -d $RPM_BUILD_ROOT%{_javadir}
-cp -p dist/%{short_name}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
-cd $RPM_BUILD_ROOT%{_javadir}
-ln -s %{name}-%{version}.jar %{short_name}-%{version}.jar
-for jar in *-%{version}.jar; do
-	ln -sf ${jar} `echo $jar| sed  "s|-%{version}||g"`
-done
-cd -
+cp -a dist/commons-discovery.jar $RPM_BUILD_ROOT%{_javadir}/commons-discovery-%{version}.jar
+ln -s commons-discovery-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/commons-discovery.jar
 
 # javadoc
+%if %{with javadoc}
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 cp -pr dist/docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post javadoc
+ln -sf %{name}-%{version} %{_javadocdir}/%{name}
+
 %files
 %defattr(644,root,root,755)
-%doc LICENSE.txt
-%{_javadir}/*
+%doc discovery/LICENSE.txt
+%{_javadir}/*.jar
 
+%if %{with javadoc}
 %files javadoc
 %defattr(644,root,root,755)
 %{_javadocdir}/%{name}-%{version}
+%ghost %{_javadocdir}/%{name}
+%endif
