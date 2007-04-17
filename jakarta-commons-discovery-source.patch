@@ -1,0 +1,10 @@
+--- commons-discovery-0.2-src/discovery/build.xml~	2007-04-18 00:42:35.021414655 +0300
++++ commons-discovery-0.2-src/discovery/build.xml	2007-04-18 00:42:36.451446936 +0300
+@@ -120,6 +120,7 @@
+            destdir="${build.home}/classes"
+              debug="${compile.debug}"
+        deprecation="${compile.deprecation}"
++            source="${compile.source}"
+           optimize="${compile.optimize}">
+       <classpath refid="compile.classpath"/>
+     </javac>
