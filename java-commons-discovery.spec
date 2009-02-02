@@ -2,22 +2,22 @@
 %include	/usr/lib/rpm/macros.java
 Summary:	Jakarta Commons Discovery - discovering implementations for pluggable interfaces
 Summary(pl.UTF-8):	Pakiet Jakarta Commons Discovery - wykrywanie implementacji dołączalnych interfejsów
-Name:		jakarta-commons-discovery
+Name:		java-commons-discovery
 Version:	0.2
 Release:	0.1
-License:	Apache Software License
-Group:		Development/Languages/Java
+License:	Apache
+Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/jakarta/commons/discovery/source/commons-discovery-%{version}-src.tar.gz
 # Source0-md5:	57968a150ea9b7158ac0e995c8f24080
 Patch0:		%{name}-source.patch
 URL:		http://jakarta.apache.org/commons/discovery/
 BuildRequires:	ant
-BuildRequires:	jakarta-commons-logging >= 1.0.1
+BuildRequires:	java-commons-logging >= 1.0.1
 BuildRequires:	jpackage-utils
 BuildRequires:	junit >= 3.7
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
-Requires:	jakarta-commons-logging >= 1.0.1
+Requires:	java-commons-logging >= 1.0.1
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -60,8 +60,8 @@ cp discovery/LICENSE.txt LICENSE
 cd discovery
 %ant \
 	-Dcompile.source=1.4 \
-	-Djunit.jar=%{_datadir}/java/junit.jar \
-	-Dlogger.jar=%{_datadir}/java/commons-logging.jar \
+	-Djunit.jar=%{_javadir}/junit.jar \
+	-Dlogger.jar=%{_javadir}/commons-logging.jar \
 	dist
 
 %install
