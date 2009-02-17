@@ -1,18 +1,20 @@
-%bcond_with	javadoc	# broken
+%bcond_without	javadoc	# Build api docs
 %include	/usr/lib/rpm/macros.java
-Summary:	Jakarta Commons Discovery - discovering implementations for pluggable interfaces
-Summary(pl.UTF-8):	Pakiet Jakarta Commons Discovery - wykrywanie implementacji dołączalnych interfejsów
+%define		srcname	commons-discovery
+Summary:	Commons Discovery - discovering implementations for pluggable interfaces
+Summary(pl.UTF-8):	Pakiet Commons Discovery - wykrywanie implementacji dołączalnych interfejsów
 Name:		java-commons-discovery
 Version:	0.2
-Release:	0.1
+Release:	1
 License:	Apache
 Group:		Libraries/Java
-Source0:	http://www.apache.org/dist/jakarta/commons/discovery/source/commons-discovery-%{version}-src.tar.gz
+Source0:	http://www.apache.org/dist/commons/discovery/source/commons-discovery-%{version}-src.tar.gz
 # Source0-md5:	57968a150ea9b7158ac0e995c8f24080
-Patch0:		%{name}-source.patch
-URL:		http://jakarta.apache.org/commons/discovery/
+Patch0:		jakarta-commons-discovery-source.patch
+URL:		http://commons.apache.org/commons/discovery/
 BuildRequires:	ant
 BuildRequires:	java-commons-logging >= 1.0.1
+BuildRequires:	java-gcj-compat-devel
 BuildRequires:	jpackage-utils
 BuildRequires:	junit >= 3.7
 BuildRequires:	rpm-javaprov
@@ -58,7 +60,8 @@ cp discovery/LICENSE.txt LICENSE
 
 %build
 cd discovery
-%ant \
+export SHELL=/bin/sh
+%ant	-Dbuild.compiler=extJavac \
 	-Dcompile.source=1.4 \
 	-Djunit.jar=%{_javadir}/junit.jar \
 	-Dlogger.jar=%{_javadir}/commons-logging.jar \
@@ -75,16 +78,16 @@ ln -s commons-discovery-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/commons-discov
 
 # javadoc
 %if %{with javadoc}
-install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-cp -pr dist/docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
+install -d $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
+cp -pr dist/docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
+ln -s %{srcname}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{srcname} # ghost symlink
 %endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post javadoc
-ln -sf %{name}-%{version} %{_javadocdir}/%{name}
+ln -sf %{srcname}-%{version} %{_javadocdir}/%{srcname}
 
 %files
 %defattr(644,root,root,755)
@@ -94,6 +97,6 @@ ln -sf %{name}-%{version} %{_javadocdir}/%{name}
 %if %{with javadoc}
 %files javadoc
 %defattr(644,root,root,755)
-%{_javadocdir}/%{name}-%{version}
-%ghost %{_javadocdir}/%{name}
+%{_javadocdir}/%{srcname}-%{version}
+%ghost %{_javadocdir}/%{srcname}
 %endif
