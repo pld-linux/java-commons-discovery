@@ -1,5 +1,4 @@
 %bcond_without	javadoc	# Build api docs
-%include	/usr/lib/rpm/macros.java
 %define		srcname	commons-discovery
 Summary:	Commons Discovery - discovering implementations for pluggable interfaces
 Summary(pl.UTF-8):	Pakiet Commons Discovery - wykrywanie implementacji dołączalnych interfejsów
